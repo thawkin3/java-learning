@@ -1,18 +1,17 @@
 // https://pressbooks.howardcc.edu/jrip3/chapter/so-you-want-to-win-plinko/
 import java.util.Arrays;
-import java.util.HashMap;
 
 public class PlinkoGame {
   private static int numberOfBoardColumns = 9;
   private static int numberOfBoardRows = 13;
 
   public static void main(String[] args) {
-    System.out.println("Hello PlinkoGame");
-    int[] results = dropPlinkoChips(10);
-    System.out.println(Arrays.toString(results));
-    // generate frequency of each slot result
-    generateFrequencies(results);
-    // print expected results compared to actual results
+    System.out.println("\nLet's play Plinko! We're going to drop 10,000 chips.\n");
+    System.out.println("Generating results...\n");
+
+    int[] results = dropPlinkoChips(10000);
+    int[] counts = generateFrequencies(results);
+    printActualVersusExpectedCounts(results, counts);
   }
 
   private static int[] dropPlinkoChips(int numberOfChips) {
@@ -26,7 +25,6 @@ public class PlinkoGame {
   }
 
   private static int dropPlinkoChip() {
-    System.out.println("Dropping a Plinko chip!");
     double chipX = 5.0;
     final double moveLeftAmount = -0.5;
     final double moveRightAmount = 0.5;
@@ -35,8 +33,6 @@ public class PlinkoGame {
 
     // The chip is always in column 5 (chipX = 5) for row 1 (chipY = 1)
     for (int chipY = 1; chipY < numberOfBoardRows; chipY++) {
-      double previousChipX = chipX;
-
       if (chipX == leftMostColumn) {
         // Chip is already on the very left side of the board and can only move right
         chipX += moveRightAmount;
@@ -49,35 +45,39 @@ public class PlinkoGame {
         double movementX = randomNumber > 0.5 ? moveRightAmount : moveLeftAmount;
         chipX += movementX;
       }
-
-      System.out.println("Starting in " + chipY + ", " + previousChipX + "; moved to " + (chipY + 1) + ", " + chipX);
     }
 
-    System.out.println("Final chipX: " + chipX);
     return (int) chipX;
   }
 
-  private static void generateFrequencies(int[] results) {
-    HashMap<Integer, Integer> frequencies = new HashMap<Integer, Integer>();
-
-    frequencies.put(1, 0);
-    frequencies.put(2, 0);
-    frequencies.put(3, 0);
-    frequencies.put(4, 0);
-    frequencies.put(5, 0);
-    frequencies.put(6, 0);
-    frequencies.put(7, 0);
-    frequencies.put(8, 0);
-    frequencies.put(9, 0);
+  private static int[] generateFrequencies(int[] results) {
+    int[] counts = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
     for (int result : results) {
-      frequencies.put(result, frequencies.get(result) + 1);
+      counts[result]++;
     }
 
-    System.out.println(frequencies);
+    return counts;
+  }
 
-    for (int i : frequencies.keySet()) {
-      System.out.println("key: " + i + " value: " + frequencies.get(i));
+  private static void printActualVersusExpectedCounts(int[] results, int[] actualCounts) {
+    int numberOfCoinDrops = results.length;
+    double[] expectedPercentages = {0, 0.019, 0.054, 0.121, 0.193, 0.226, 0.193, 0.121, 0.054, 0.019};
+    double[] actualPercentages = new double[10];
+
+    for (int i = 0; i < actualCounts.length; i++) {
+      actualPercentages[i] = actualCounts[i] / (double) numberOfCoinDrops;
     }
+
+    System.out.println("Expected vs. Actual Percentages Per Slot");
+    System.out.println("----------------------------");
+    System.out.println("| Slot | Expected | Actual |");
+    System.out.println("|--------------------------|");
+
+    for (int i = 1; i < actualPercentages.length; i++) {
+      System.out.println("| " + i + "    | " + expectedPercentages[i] + "    | " + String.format("%.3f", actualPercentages[i]) + "  |");
+    }
+
+    System.out.println("----------------------------");
   }
 }
