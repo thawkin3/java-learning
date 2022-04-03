@@ -1,5 +1,6 @@
 // https://pressbooks.howardcc.edu/jrip3/chapter/so-you-want-to-win-plinko/
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class PlinkoGame {
   private static int numberOfBoardColumns = 9;
@@ -9,6 +10,9 @@ public class PlinkoGame {
     System.out.println("Hello PlinkoGame");
     double[] results = dropPlinkoChips(10);
     System.out.println(Arrays.toString(results));
+    // generate frequency of each slot result
+    generateFrequencies(results);
+    // print expected results compared to actual results
   }
 
   private static double[] dropPlinkoChips(int numberOfChips) {
@@ -51,5 +55,29 @@ public class PlinkoGame {
 
     System.out.println("Final chipX: " + chipX);
     return chipX;
+  }
+
+  private static void generateFrequencies(double[] results) {
+    HashMap<Double, Integer> frequencies = new HashMap<Double, Integer>();
+
+    frequencies.put(1.0, 0);
+    frequencies.put(2.0, 0);
+    frequencies.put(3.0, 0);
+    frequencies.put(4.0, 0);
+    frequencies.put(5.0, 0);
+    frequencies.put(6.0, 0);
+    frequencies.put(7.0, 0);
+    frequencies.put(8.0, 0);
+    frequencies.put(9.0, 0);
+
+    for (double result : results) {
+      frequencies.put(result, frequencies.get(result) + 1);
+    }
+
+    System.out.println(frequencies);
+
+    for (double i : frequencies.keySet()) {
+      System.out.println("key: " + i + " value: " + frequencies.get(i));
+    }
   }
 }
