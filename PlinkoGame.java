@@ -8,15 +8,15 @@ public class PlinkoGame {
 
   public static void main(String[] args) {
     System.out.println("Hello PlinkoGame");
-    double[] results = dropPlinkoChips(10);
+    int[] results = dropPlinkoChips(10);
     System.out.println(Arrays.toString(results));
     // generate frequency of each slot result
     generateFrequencies(results);
     // print expected results compared to actual results
   }
 
-  private static double[] dropPlinkoChips(int numberOfChips) {
-    double[] results = new double[numberOfChips];
+  private static int[] dropPlinkoChips(int numberOfChips) {
+    int[] results = new int[numberOfChips];
 
     for (int i = 0; i < numberOfChips; i++) {
       results[i] = dropPlinkoChip();
@@ -25,7 +25,7 @@ public class PlinkoGame {
     return results;
   }
 
-  private static double dropPlinkoChip() {
+  private static int dropPlinkoChip() {
     System.out.println("Dropping a Plinko chip!");
     double chipX = 5.0;
     final double moveLeftAmount = -0.5;
@@ -54,29 +54,29 @@ public class PlinkoGame {
     }
 
     System.out.println("Final chipX: " + chipX);
-    return chipX;
+    return (int) chipX;
   }
 
-  private static void generateFrequencies(double[] results) {
-    HashMap<Double, Integer> frequencies = new HashMap<Double, Integer>();
+  private static void generateFrequencies(int[] results) {
+    HashMap<Integer, Integer> frequencies = new HashMap<Integer, Integer>();
 
-    frequencies.put(1.0, 0);
-    frequencies.put(2.0, 0);
-    frequencies.put(3.0, 0);
-    frequencies.put(4.0, 0);
-    frequencies.put(5.0, 0);
-    frequencies.put(6.0, 0);
-    frequencies.put(7.0, 0);
-    frequencies.put(8.0, 0);
-    frequencies.put(9.0, 0);
+    frequencies.put(1, 0);
+    frequencies.put(2, 0);
+    frequencies.put(3, 0);
+    frequencies.put(4, 0);
+    frequencies.put(5, 0);
+    frequencies.put(6, 0);
+    frequencies.put(7, 0);
+    frequencies.put(8, 0);
+    frequencies.put(9, 0);
 
-    for (double result : results) {
+    for (int result : results) {
       frequencies.put(result, frequencies.get(result) + 1);
     }
 
     System.out.println(frequencies);
 
-    for (double i : frequencies.keySet()) {
+    for (int i : frequencies.keySet()) {
       System.out.println("key: " + i + " value: " + frequencies.get(i));
     }
   }
