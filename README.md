@@ -15,3 +15,6 @@ To run the compiled code, enter `java PlinkoGame` in your terminal after compili
 - [W3 Schools Java Tutorial](https://www.w3schools.com/java/default.asp)
 - [Install Java SE 18 for Mac](https://www.oracle.com/java/technologies/downloads/#jdk18-mac)
 - [Plinko](https://pressbooks.howardcc.edu/jrip3/chapter/so-you-want-to-win-plinko/)
+- [JUnit for Testing](https://junit.org/junit5/docs/current/user-guide/)
+- [VSCode Extension Pack for Java](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack)
+- [VSCode Test Runner for Java](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-test)
