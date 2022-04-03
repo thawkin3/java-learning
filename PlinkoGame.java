@@ -1,4 +1,5 @@
 // https://pressbooks.howardcc.edu/jrip3/chapter/so-you-want-to-win-plinko/
+import java.util.Arrays;
 
 public class PlinkoGame {
   private static int numberOfBoardColumns = 9;
@@ -6,17 +7,18 @@ public class PlinkoGame {
 
   public static void main(String[] args) {
     System.out.println("Hello PlinkoGame");
-    dropPlinkoChips(10);
+    double[] results = dropPlinkoChips(10);
+    System.out.println(Arrays.toString(results));
   }
 
-  private static void dropPlinkoChips(int numberOfChips) {
-    if (numberOfChips < 1) {
-      dropPlinkoChip();
-    } else {
-      for (int i = 0; i < numberOfChips; i++) {
-        dropPlinkoChip();
-      }
+  private static double[] dropPlinkoChips(int numberOfChips) {
+    double[] results = new double[numberOfChips];
+
+    for (int i = 0; i < numberOfChips; i++) {
+      results[i] = dropPlinkoChip();
     }
+
+    return results;
   }
 
   private static double dropPlinkoChip() {
