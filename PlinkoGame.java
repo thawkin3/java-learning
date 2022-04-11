@@ -1,8 +1,5 @@
 // https://pressbooks.howardcc.edu/jrip3/chapter/so-you-want-to-win-plinko/
-import java.util.Arrays;
-
 public class PlinkoGame {
-  private static int numberOfBoardColumns = 9;
   private static int numberOfBoardRows = 13;
 
   public static void main(String[] args) {
