@@ -11,7 +11,7 @@ public class PlinkoGame {
     printActualVersusExpectedCounts(results, counts);
   }
 
-  private static int[] dropPlinkoChips(int numberOfChips) {
+  protected static int[] dropPlinkoChips(int numberOfChips) {
     int[] results = new int[numberOfChips];
 
     for (int i = 0; i < numberOfChips; i++) {
@@ -21,7 +21,7 @@ public class PlinkoGame {
     return results;
   }
 
-  private static int dropPlinkoChip() {
+  protected static int dropPlinkoChip() {
     double chipX = 5.0;
     final double moveLeftAmount = -0.5;
     final double moveRightAmount = 0.5;
@@ -47,7 +47,7 @@ public class PlinkoGame {
     return (int) chipX;
   }
 
-  private static int[] generateFrequencies(int[] results) {
+  protected static int[] generateFrequencies(int[] results) {
     int[] counts = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
     for (int result : results) {

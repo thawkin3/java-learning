@@ -10,6 +10,8 @@ To compile the code, enter `javac PlinkoGame.java` in your terminal.
 
 To run the compiled code, enter `java PlinkoGame` in your terminal after compiling.
 
+To run the JUnit tests, use the [VSCode Test Runner for Java](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-test) extension.
+
 ## Resources
 
 - [W3 Schools Java Tutorial](https://www.w3schools.com/java/default.asp)
